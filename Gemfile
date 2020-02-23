@@ -6,7 +6,15 @@ ruby '2.6.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
 
+gem 'image_processing',           '1.9.3'
+
+gem 'mini_magick',                '4.9.5'
+
+
 gem 'bcrypt',         '3.1.13'
+
+gem 'active_storage_validations', '0.8.2'
+
 
 gem 'faker',          '2.1.2'
 
@@ -37,6 +45,9 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'pg', '1.1.4'
 
+  gem 'aws-sdk-s3', '1.46.0', require: false
+
+
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
@@ -57,6 +68,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
 end
+
+
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
