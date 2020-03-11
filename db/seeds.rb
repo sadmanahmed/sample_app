@@ -6,6 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 # Create a main sample user.
+
+
+#Micropost.destroy_all
+#User.destroy_all
+
+
+#Users
 User.create!(name:  "Abir",
              email: "abirssc7@gmail.com",
              password:              "abir1234",
@@ -35,5 +42,11 @@ users = User.order(:created_at).take(6)
 end
 
 
-
+# Create following relationships.
+users = User.all
+user  = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
 
