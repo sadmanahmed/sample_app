@@ -82,12 +82,20 @@ class User < ApplicationRecord
 
   # Defines a proto-feed.
   # See "Following users" for the full implementation.
-  def feed
+  def feed1
     following_ids = "SELECT followed_id FROM relationships
                      WHERE  follower_id = :user_id"
     #Micropost.where("user_id IN (#{following_ids})
     #                 OR user_id = :user_id", user_id: id)
     Micropost.all #will bring all the posts
+  end
+
+  def feed
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id)
+    #Micropost.all #will bring all the posts
   end
 
   # Follows a user.
