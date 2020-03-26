@@ -38,8 +38,19 @@ end
 users = User.order(:created_at).take(6)
 50.times do
   content = Faker::Lorem.sentence(word_count: 5)
-  users.each { |user| user.microposts.create!(content: content) }
+  # image = File.open(Rails.root.join('db/seeds/micropost_placeholder.png'))
+  users.each do |user|
+    # user.microposts.create!(content: content, image: image)
+    micropost = Micropost.new(user: user, content: content)
+    micropost.image.attach(
+      io: File.open(Rails.root.join('db/seeds/micropost_placeholder.png')), # opening the file inline allows fresh calculation of checksum while uploading to remote storage
+      filename: 'micropost_placeholder.png',
+      content_type: 'image/png'
+    )
+    micropost.save!
+  end
 end
+
 
 
 # Create following relationships.
