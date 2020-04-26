@@ -29,6 +29,9 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
 
   attr_accessor :remember_token, :activation_token, :reset_token
+
+    before_validation :ensure_token
+
   before_save   :downcase_email
   before_create :create_activation_digest
   validates :name,  presence: true, length: { maximum: 50 }
@@ -38,6 +41,8 @@ class User < ApplicationRecord
                     uniqueness: true
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 },allow_nil: true
+
+   validates :token, uniqueness: true
 
   # Returns the hash digest of the given string.
   def User.digest(string)
@@ -132,6 +137,7 @@ class User < ApplicationRecord
   end
 
 
+
   private
 
     # Converts email to all lower-case.
@@ -144,4 +150,15 @@ class User < ApplicationRecord
       self.activation_token  = User.new_token
       self.activation_digest = User.digest(activation_token)
     end
+
+    def ensure_token
+    self.token = generate_hex(:token) if                          token.blank?
+  end
+
+  def generate_hex(column)
+    loop do
+      hex = SecureRandom.hex
+      break hex if self.class.where(column => hex).none?
+    end
+  end
 end

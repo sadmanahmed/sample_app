@@ -1,0 +1,38 @@
+{
+    "data": {
+        "id": "1",
+        "type": "users",
+        "attributes": {
+            "name": "Abir",
+            "email": "abirssc7@gmail.com",
+            "created-at": "2020-03-26T17:16:38.166Z",
+            "updated-at": "2020-04-17T21:41:31.696Z",
+            "password-digest": "$2a$12$XmlVaxjArDUCFeOWjOGYWORCEcfCW3.GBMarZrsLCh1PdXeNRKHS2",
+            "remember-digest": null,
+            "admin": true,
+            "activation-digest": "$2a$12$/Y3zRUi1gr9GXSCBKUw9Oet5o8z6T6.tL5e09g21TKSodQkxe.xoa",
+            "activated": true,
+            "activated-at": "2020-03-26T17:16:37.811Z",
+            "reset-digest": null,
+            "reset-sent-at": null,
+            "token": "5cb13288cd629e9cdf72c167f3a4d750"
+        },
+        "relationships": {
+            "microposts": {
+                "links": {
+                    "related": "/api/v1/microposts?user_id=1"
+                }
+            },
+            "followers": {
+                "links": {
+                    "related": "/api/v1/users/1/followers"
+                }
+            },
+            "followings": {
+                "links": {
+                    "related": "/api/v1/users/1/followings"
+                }
+            }
+        }
+    }
+}
