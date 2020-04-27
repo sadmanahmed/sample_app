@@ -3,7 +3,7 @@ module Api
 
     class SessionsController < BaseController
       before_action :load_resource
-      #skip_before_action :authenticate_user!, only: [:create]
+      skip_before_action :authenticate_user!, only: [:create]
 
       def create
         if @user
