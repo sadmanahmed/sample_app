@@ -2,7 +2,8 @@ module Api
   module V1
     class UsersController < BaseController
       before_action :load_resource
-      #skip_before_action :authenticate_user!, only: [:index, :show, :create, :activate]
+      skip_before_action :authenticate_user!, only: [
+        :create, :activate]
       #before_action :authenticate_user, only: [:index, :show]
 
       def index
@@ -25,7 +26,7 @@ module Api
       def create
         auth_user = authorize_with_permissions(@user)
 
-        if @user.save && @user.send_activation_email && @user.activate
+        if @user.save && @user.send_activation_email #&& @user.activate
           render json: auth_user.record, serializer: UserSerializer,
             fields: {user: auth_user.fields}, status: 201, scope: @user , adapter: :json_api
         else
